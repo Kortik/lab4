@@ -9,11 +9,10 @@ int main(void)
 {
 	int pipe, i;
 	char buf;
-	mkfifo(PATHTEXT, 0777);
-	//if (mkfifo(PATHTEXT, 0777)) {
-	//	printf("Error\n");
-	//	exit(-1);
-	//}
+	if (mkfifo(PATHTEXT, 0777)) {
+		printf("Error\n");
+		exit(-1);
+	}
 	pipe = open(PATHTEXT, O_WRONLY);
 	while (read(STDIN_FILENO, &buf, 1)) {
 		if (buf == '\n') {
